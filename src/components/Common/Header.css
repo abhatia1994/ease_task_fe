@@ -1,0 +1,17 @@
+.header {
+  height: 55px;
+  background-color: black;
+  /* border: 1px solid red; */
+  color: white;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0 10px 0 10px;
+  justify-content: space-between;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
