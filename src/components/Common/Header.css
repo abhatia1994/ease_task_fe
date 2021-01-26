@@ -1,0 +1,26 @@
+.header {
+  height: 85px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0 50px;
+  justify-content: space-between;
+  /* position: fixed; */
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.header-buttons {
+  display: flex;
+}
+
+.header-buttons * {
+  margin-left: 10px;
+  cursor: pointer;
+}

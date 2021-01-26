@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import { PrimaryButtonSmall } from "./components/Common/Buttons";
+import { Header } from "./components/Common/Header";
+import { BasicExample } from "./components/Router/Router";
+import { RegisterVendor } from "./components/vendor/RegisterVendor";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <div className="main">
+          <BasicExample />
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

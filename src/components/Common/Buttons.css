@@ -1,0 +1,15 @@
+.primary-button {
+  background-color: #377dff;
+  border: 0;
+  border-radius: 10px;
+  min-width: 150px;
+  color: white;
+  height: 55px;
+  outline: none;
+  font-weight: 600;
+}
+
+.primary-button-inverted {
+  background-color: #e5f1ff;
+  color: #377dff;
+}
