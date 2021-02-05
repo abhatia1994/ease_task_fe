@@ -4,9 +4,14 @@
   border-radius: 10px;
   min-width: 150px;
   color: white;
-  height: 55px;
+  height: 45px;
   outline: none;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  opacity: 0.8;
 }
 
 .primary-button-inverted {

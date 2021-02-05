@@ -1,9 +1,10 @@
 import React from "react";
+import { sendEmail } from "../../common/utils";
 import { PrimaryButtonSmall } from "../Common/Buttons";
 import { Input } from "../Common/Input";
 import "./RegisterCustomer.css";
 
-const sendDataToSQL = (data) => {
+const sendDataToSQL = (data, onSuccess) => {
   console.log(data);
   fetch("http://localhost:3000/customer-register/", {
     method: "POST",
@@ -13,17 +14,26 @@ const sendDataToSQL = (data) => {
     body: JSON.stringify({
       data,
     }),
-  });
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("RESPONSE:", data);
+      onSuccess && onSuccess();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 };
 
 export const RegisterCustomer = () => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [phone, setPhone] = React.useState("");
 
   return (
-    <div class="form-vendor">
+    <form class="form-vendor">
       <div class="form-row">
         <label class="form-label" for="name">
           First Name
@@ -82,62 +92,49 @@ export const RegisterCustomer = () => {
         />
       </div>
 
+      <div class="form-row">
+        <label class="form-label" for="password">
+          Password
+        </label>
+        <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+      </div>
+
       <div class="form-row submit-button">
-        <input
+        <PrimaryButtonSmall
           text="Continue"
           onClick={(e) => {
-            alert("asdasdasdas");
-            if (!firstName || !lastName || !phone || !email) {
+            if (!firstName || !lastName || !phone || !email || !password) {
               return;
             }
-            sendDataToSQL({
-              firstName,
-              lastName,
-              phone,
-              email,
-            });
+            alert("123");
+            sendDataToSQL(
+              {
+                firstName,
+                lastName,
+                phone,
+                email,
+                password,
+              },
+              () => {
+                sendEmail({
+                  email: email,
+                });
+              }
+            );
 
             e.preventDefault();
             e.stopPropagation();
           }}
         />
-        {/* <input
-          type="submit"
-          className="form-submit"
-          value="Continue"
-          onClick={(e) => {
-            if (
-              !firstName ||
-              !lastName ||
-              !phone ||
-              !email ||
-              !expertise ||
-              !description ||
-              !vendorName ||
-              !serviceType ||
-              !minServiceFee ||
-              !availability
-            ) {
-              return;
-            }
-            sendDataToSQL({
-              firstName,
-              lastName,
-              phone,
-              email,
-              expertise,
-              description,
-              vendorName,
-              serviceType,
-              minServiceFee,
-              availability,
-            });
-
-            // e.preventDefault();
-            // e.stopPropagation();
-          }}
-        /> */}
       </div>
-    </div>
+    </form>
   );
 };

@@ -1,13 +1,13 @@
 .header {
-  height: 85px;
   background-color: black;
   color: white;
   display: flex;
   align-items: center;
-  vertical-align: middle;
   padding: 0 50px;
-  justify-content: space-between;
-  /* position: fixed; */
+  justify-content: space-around;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 
 .header-title {

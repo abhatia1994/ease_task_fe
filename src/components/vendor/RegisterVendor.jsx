@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { sendEmail } from "../../common/utils";
 import { PrimaryButtonSmall } from "../Common/Buttons";
 import { Input } from "../Common/Input";
 import "./RegisterVendor.css";
@@ -40,6 +41,7 @@ export const RegisterVendor = () => {
   const [vendorName, setVendorName] = React.useState("");
   const [serviceType, setServiceType] = React.useState("");
   const [minServiceFee, setMinServiceFee] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const history = useHistory();
 
@@ -174,51 +176,25 @@ export const RegisterVendor = () => {
         />
       </div>
 
+      <div class="form-row">
+        <label class="form-label" for="password">
+          Password
+        </label>
+        <Input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+      </div>
+
       <div class="form-row submit-button">
-        {/* <PrimaryButtonSmall text="Continue" isInverted={false}>
-          <input
-            type="submit"
-            className="form-submit"
-            value="Continue"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              if (
-                !firstName ||
-                !lastName ||
-                !phone ||
-                !email ||
-                !expertise ||
-                !description ||
-                !vendorName ||
-                !serviceType ||
-                !minServiceFee
-              ) {
-                return;
-              }
-              sendDataToSQL(
-                {
-                  firstName,
-                  lastName,
-                  phone,
-                  email,
-                  expertise,
-                  description,
-                  vendorName,
-                  serviceType,
-                  minServiceFee,
-                },
-                () => {
-                  history.push("/home");
-                }
-              );
-            }}
-          />
-        </PrimaryButtonSmall> */}
-        <input
-          type="submit"
+        <PrimaryButtonSmall
+          text="Submit"
           className="form-submit"
-          value="Continue"
           onClick={(e) => {
             if (
               !firstName ||
@@ -229,7 +205,8 @@ export const RegisterVendor = () => {
               !description ||
               !vendorName ||
               !serviceType ||
-              !minServiceFee
+              !minServiceFee ||
+              !password
             ) {
               return;
             }
@@ -244,9 +221,14 @@ export const RegisterVendor = () => {
                 vendorName,
                 serviceType,
                 minServiceFee,
+                password,
               },
               () => {
-                history.push("/home");
+                history.push("/sign-in");
+
+                sendEmail({
+                  email: email,
+                });
               }
             );
 

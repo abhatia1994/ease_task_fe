@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { RegisterVendor } from "../vendor/RegisterVendor";
 import { RegisterCustomer } from "../customer/RegisterCustomer";
+import { SignIn } from "../Auth/SignIn";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -23,6 +24,9 @@ export function BasicExample() {
       </Route>
       <Route path="/customer-register">
         <RegisterCustomer />
+      </Route>
+      <Route path="/sign-in">
+        <SignIn />
       </Route>
     </Switch>
   );

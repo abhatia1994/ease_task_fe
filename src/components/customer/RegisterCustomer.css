@@ -27,6 +27,12 @@
   text-align: left;
 }
 
+.form-label:after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+}
+
 .form-submit {
   margin-top: 10px;
 }
